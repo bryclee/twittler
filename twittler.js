@@ -46,19 +46,25 @@ $(document).ready(function(){
     $userTitle.append('<h2><a>@' + user + '</a></h2>');
     $userTitle.append('<h3>Recent tweets:</h3>');
     $userTitle.appendTo($modal);
-    var tweets = streams.users[user].slice(streams.users[user].length - 6);
-    for (var i = 0; i < tweets.length; i++){
-      var $tweet = create_tweet(tweets[i], "profile-tweet");
-      $tweet.find('a').on('click', function(event){
-        event.preventDefault();
-      });
-      console.log($tweet);
-      $userTitle.after($tweet);
-    }
     
     // make appear
     $modal.prependTo($body).fadeIn('fast');
     $overlay.prependTo($body).fadeIn('fast');
+    
+    var tweetIdx = streams.users[user].length - 1,
+        usedHeight = $userTitle.outerHeight();
+        availHeight = $modal.height();
+    console.log(availHeight, usedHeight);
+    while (availHeight > usedHeight + 150 && tweetIdx >= 0){
+      var $tweet = create_tweet(streams.users[user][tweetIdx], "profile-tweet");
+      $tweet.find('a').on('click', function(event){
+        event.preventDefault();
+      });
+      tweetIdx -= 1;
+      $tweet.appendTo($modal);
+      usedHeight += $tweet.outerHeight();
+    }
+    
     $overlay.on('click', function(){
       $modal.remove();
       $overlay.remove();
