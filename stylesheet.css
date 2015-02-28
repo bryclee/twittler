@@ -111,8 +111,8 @@ small {
 
 .tweet {
   line-height: 1.2em;
-  padding: 0 0 0.2em 0;
-  margin: 0 0 0.6em 0;
+  padding: 0 0 0.4em 0;
+  margin: 0 0 0.8em 0;
   opacity: 1;
   -moz-transition: opacity 0.8s;
   -o transition: opacity 0.8s;

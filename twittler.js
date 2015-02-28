@@ -5,7 +5,6 @@ $(document).ready(function(){
   
   
   var update_tweets = function(){
-    var showIdx;
     while(index < streams.home.length){
       var tweet = streams.home[index];
       var $tweet = $('<div class="tweet hidden"></div>');
@@ -17,6 +16,7 @@ $(document).ready(function(){
       $tweet.prependTo($main);
       index += 1;
     }
+    // display new tweets
     var $hidden = $('.hidden');
     $hidden.find('a').on('click', profile_click);
     $hidden.slideDown(800,'swing',function(){
@@ -25,6 +25,7 @@ $(document).ready(function(){
   };
   
   var profile_click = function(event){
+    // popup overlay of profile
     event.preventDefault();
     console.log($(this).data("user"));
   };
